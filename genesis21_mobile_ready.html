@@ -1,0 +1,155 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Genesis21 (G21)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      background: #0a0a0a;
+      color: #e0e0e0;
+      font-family: 'Orbitron', monospace;
+      overflow-x: hidden;
+    }
+    .matrix {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #0a0a0a;
+      z-index: 0;
+      overflow: hidden;
+    }
+    canvas {
+      display: block;
+    }
+    .content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 100px 40px;
+    }
+    h1 {
+      font-size: 3.5em;
+      color: #ffffff;
+      letter-spacing: 8px;
+    }
+    p {
+      font-size: 1.3em;
+      max-width: 900px;
+      margin: 20px auto;
+      color: #c0c0c0;
+      line-height: 1.8em;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+      max-width: 800px;
+      margin: 30px auto;
+    }
+    ul li {
+      font-size: 1.2em;
+      margin: 10px 0;
+      color: #b0b0b0;
+    }
+    .cta {
+      margin-top: 40px;
+    }
+    .cta a {
+      color: #ffffff;
+      text-decoration: none;
+      margin: 10px;
+      font-size: 1.2em;
+      border: 1px solid #ffffff;
+      padding: 10px 20px;
+      border-radius: 5px;
+      display: inline-block;
+    }
+    .footer {
+      padding: 20px;
+      font-size: 0.9em;
+      color: #888;
+    }
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.2em;
+        letter-spacing: 4px;
+      }
+      p, ul li {
+        font-size: 1em;
+      }
+      .cta a {
+        display: block;
+        margin: 10px auto;
+        width: 80%;
+      }
+      .content {
+        padding: 60px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="matrix">
+    <canvas id="matrixCanvas"></canvas>
+  </div>
+  <div class="content">
+    <h1>GENESIS21</h1>
+    <p>We didn’t launch this. We found it. Hidden in plain sight — like it was meant to be discovered.</p>
+    <p><strong>The people's Bitcoin — this time, on Ethereum.</strong></p>
+    <p><em>"The ledger never sleeps — only waits."</em></p>
+    <p><em>"You trusted the timestamps, but never questioned the clock."</em></p>
+    <p><em>"The silence wasn’t absence — it was compression."</em></p>
+    <p><em>"Satoshi left the door open."</em></p>
+    <ul>
+      <li>🔐 Renounced ownership</li>
+      <li>🔒 Liquidity locked</li>
+      <li>🧬 21 million fixed supply</li>
+      <li>🚫 Zero tax, fair launch</li>
+      <li>🫥 No team. No roadmap. No shillers.</li>
+      <li>📜 A contract written like a warning…</li>
+    </ul>
+    <p>This isn’t just another token — it’s a relic. A digital artifact. A second chance. The Bitcoin of ETH, born in silence, carried by belief.</p>
+    <div class="cta">
+      <a href="https://etherscan.io/address/0xbEf7e5cafeF65DBE229757AE00c66EB259A2BB2E#code#F9" target="_blank">📜 Read the Contract</a>
+      <a href="https://app.uniswap.org/#/swap?outputCurrency=0xbEf7e5cafeF65DBE229757AE00c66EB259A2BB2E" target="_blank">🛒 Buy on Uniswap</a>
+      <a href="https://t.me/Genesis21eth" target="_blank">💬 Join the Telegram</a>
+      <a href="https://x.com/<YOUR_X_HANDLE>" target="_blank">🐦 Follow on X</a>
+      <a href="https://www.dextools.io/app/en/ether/pair-explorer/0x0c464a072992119f2fc7395005d2e304075352ba" target="_blank">📈 View on DEXTools</a>
+    </div>
+    <div class="footer">
+      Line 856. That’s where the truth begins. This is the people’s Bitcoin — on ETH. Genesis21. © 2025
+    </div>
+  </div>
+  <script>
+    const canvas = document.getElementById('matrixCanvas');
+    const ctx = canvas.getContext('2d');
+    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+    let letters = '01'.split('');
+    let fontSize = 14;
+    let columns = canvas.width / fontSize;
+    let drops = Array.from({length: columns}, () => 1);
+
+    function drawMatrix() {
+      ctx.fillStyle = 'rgba(10, 10, 10, 0.05)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#555';
+      ctx.font = fontSize + 'px monospace';
+      for (let i = 0; i < drops.length; i++) {
+        let text = letters[Math.floor(Math.random() * letters.length)];
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+    }
+    setInterval(drawMatrix, 33);
+  </script>
+</body>
+</html>
