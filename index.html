@@ -563,6 +563,11 @@
         font-size: 0.7em;
     }
 }
+
+.section-container h2::after {
+    content: " ▼";
+    font-size: 0.7em;
+}
 </style>
 </head>
 <body>
@@ -891,26 +896,25 @@
         });
     </script>
 
+
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-    if (window.innerWidth <= 768) {
-        document.querySelectorAll(".section-container").forEach(section => {
-            const heading = section.querySelector("h2");
-            if (heading) {
-                const content = Array.from(section.children).filter(el => el !== heading);
-                const wrapper = document.createElement("div");
-                wrapper.style.display = "none";
-                wrapper.classList.add("collapsible-content");
-                content.forEach(el => wrapper.appendChild(el));
-                section.appendChild(wrapper);
+    document.querySelectorAll(".section-container").forEach(section => {
+        const heading = section.querySelector("h2");
+        if (heading) {
+            const content = Array.from(section.children).filter(el => el !== heading);
+            const wrapper = document.createElement("div");
+            wrapper.style.display = "none";
+            wrapper.classList.add("collapsible-content");
+            content.forEach(el => wrapper.appendChild(el));
+            section.appendChild(wrapper);
 
-                heading.style.cursor = "pointer";
-                heading.addEventListener("click", () => {
-                    wrapper.style.display = wrapper.style.display === "none" ? "block" : "none";
-                });
-            }
-        });
-    }
+            heading.style.cursor = "pointer";
+            heading.addEventListener("click", () => {
+                wrapper.style.display = wrapper.style.display === "none" ? "block" : "none";
+            });
+        }
+    });
 });
 </script>
 </body>
