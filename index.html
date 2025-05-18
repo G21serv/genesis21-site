@@ -339,6 +339,92 @@
         width: 100%;
     }
 }
+
+@media (max-width: 768px) {
+    html, body {
+        max-width: 100vw;
+        overflow-x: hidden;
+        font-size: 15px;
+    }
+
+    header {
+        flex-direction: column;
+        height: auto;
+        padding: 10px;
+        width: 100%;
+    }
+
+    .logo-container {
+        justify-content: center;
+        width: 100%;
+        margin: 0;
+    }
+
+    .logo {
+        width: 70px;
+        height: 70px;
+    }
+
+    .header-title {
+        align-items: center;
+        text-align: center;
+    }
+
+    nav {
+        flex-direction: column;
+        align-items: center;
+        margin-top: 10px;
+        gap: 10px;
+        width: 100%;
+    }
+
+    nav a {
+        margin: 5px 0;
+        font-size: 1em;
+    }
+
+    .section-container,
+    .roadmap-phase,
+    .feature-card {
+        padding: 20px 10px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px;
+    }
+
+    .feature-card p {
+        max-width: 100% !important;
+        text-align: center;
+    }
+
+    .button-container {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .cta-button {
+        min-width: unset;
+        width: 100%;
+    }
+
+    .header-social-links {
+        flex-direction: row !important;
+        justify-content: center !important;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+
+    .header-social-links img {
+        margin: 10px;
+    }
+
+    
+}
 </style>
 </head>
 <body>
