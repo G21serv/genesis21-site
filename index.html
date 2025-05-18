@@ -285,7 +285,61 @@
             position: relative;
             z-index: 2;
         }
-    </style>
+    
+@media (max-width: 768px) {
+    body {
+        font-size: 15px;
+    }
+
+    header {
+        flex-direction: column;
+        height: auto;
+        padding: 10px;
+    }
+
+    .logo {
+        width: 70px;
+        height: 70px;
+    }
+
+    nav {
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    nav a {
+        margin: 5px 0;
+        font-size: 1em;
+    }
+
+    .section-container {
+        padding: 20px 10px;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px;
+    }
+
+    .feature-card p {
+        max-width: 100% !important;
+    }
+
+    .roadmap-phase {
+        padding: 20px;
+    }
+
+    .button-container {
+        flex-direction: column;
+    }
+
+    .cta-button {
+        min-width: unset;
+        width: 100%;
+    }
+}
+</style>
 </head>
 <body>
 <canvas id="matrix-rain"></canvas>
