@@ -513,6 +513,56 @@
         display: none !important;
     }
 }
+
+@media (max-width: 768px) {
+    .button-container {
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 10px;
+        width: 100% !important;
+        box-sizing: border-box;
+    }
+
+    .cta-button {
+        width: 90% !important;
+        font-size: 1em !important;
+        padding: 12px 15px !important;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+
+    .feature-card {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box;
+    }
+
+    .feature-card p, .feature-card h3 {
+        max-width: 100% !important;
+        text-align: center !important;
+    }
+
+    footer p {
+        font-size: 0.85em !important;
+        word-break: break-word !important;
+        text-align: center !important;
+    }
+
+    code {
+        word-break: break-word !important;
+        display: block !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .section-container h2::after {
+        content: " ▼";
+        font-size: 0.7em;
+    }
+}
 </style>
 </head>
 <body>
@@ -840,5 +890,28 @@
             canvas.height = window.innerHeight;
         });
     </script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    if (window.innerWidth <= 768) {
+        document.querySelectorAll(".section-container").forEach(section => {
+            const heading = section.querySelector("h2");
+            if (heading) {
+                const content = Array.from(section.children).filter(el => el !== heading);
+                const wrapper = document.createElement("div");
+                wrapper.style.display = "none";
+                wrapper.classList.add("collapsible-content");
+                content.forEach(el => wrapper.appendChild(el));
+                section.appendChild(wrapper);
+
+                heading.style.cursor = "pointer";
+                heading.addEventListener("click", () => {
+                    wrapper.style.display = wrapper.style.display === "none" ? "block" : "none";
+                });
+            }
+        });
+    }
+});
+</script>
 </body>
 </html>
