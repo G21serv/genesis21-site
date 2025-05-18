@@ -1,177 +1,616 @@
-
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Genesis21 (G21)</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      background: #0a0a0a;
-      color: #e0e0e0;
-      font-family: 'Orbitron', monospace;
-      overflow-x: hidden;
-    }
-    .matrix {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: #0a0a0a;
-      z-index: 0;
-      overflow: hidden;
-    }
-    canvas {
-      display: block;
-    }
-    .content {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-      padding: 100px 40px;
-    }
-    h1 {
-      font-size: 3.5em;
-      color: #ffffff;
-      letter-spacing: 8px;
-    }
-    p {
-      font-size: 1.3em;
-      max-width: 900px;
-      margin: 20px auto;
-      color: #c0c0c0;
-      line-height: 1.8em;
-    }
-    ul {
-      list-style-type: none;
-      padding: 0;
-      max-width: 800px;
-      margin: 30px auto;
-    }
-    ul li {
-      font-size: 1.2em;
-      margin: 10px 0;
-      color: #b0b0b0;
-    }
-    .cta {
-      margin-top: 40px;
-    }
-    .cta a {
-      color: #ffffff;
-      text-decoration: none;
-      margin: 10px;
-      font-size: 1.2em;
-      border: 1px solid #ffffff;
-      padding: 10px 20px;
-      border-radius: 5px;
-      display: inline-block;
-    }
-    .footer {
-      padding: 20px;
-      font-size: 0.9em;
-      color: #888;
-    }
-    @media (max-width: 768px) {
-      h1 {
-        font-size: 2.2em;
-        letter-spacing: 4px;
-      }
-      p, ul li {
-        font-size: 1em;
-      }
-      .cta a {
-        display: block;
-        margin: 10px auto;
-        width: 80%;
-      }
-      .content {
-        padding: 60px 20px;
-      }
-    }
-  </style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Genesis21 - AI Powered Crypto Ecosystem (Ethereum)</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<style>
+        :root {
+            --primary-color: #ffffff;
+            --text-color: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 400;
+            margin: 0;
+            padding: 0;
+            background-color: #000000;
+            color: var(--text-color);
+            overflow-x: hidden;
+            font-size: 16px; 
+        }
+
+        /* Matrix Rain Effect */
+        #matrix-rain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.5;
+        }
+
+        .section-container {
+            min-height: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px; /* Reduced spacing */
+            box-sizing: border-box;
+            text-align: center;
+            border-bottom: 1px solid #1a1a1a;
+            position: relative;
+            z-index: 2;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        header {
+            background-color: rgba(0, 0, 0, 0.9);
+            color: #fff;
+            padding: 20px 25px;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between; 
+            align-items: center;
+            box-sizing: border-box;
+            height: 130px;
+        }
+        
+        .header-title-nav {
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+
+        .logo-container {
+            position: relative;
+            margin-right: 20px;
+            display: flex;
+            align-items: center;
+            height: 100%;
+            padding: 10px 0;
+        }
+
+        .logo {
+            width: 100px;
+            height: 100px;
+            box-shadow: 0 0 10px 5px rgba(0,0,0,0.8);
+            object-fit: contain;
+        }
+
+        .header-title {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            height: 100%;
+        }
+
+        header h1 {
+            margin: 0 0 10px 0; 
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.8em;
+            font-weight: 700;
+            color: var(--primary-color);
+            letter-spacing: 2.5px;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--primary-color);
+            margin-right: 18px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1em;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: #cccccc;
+            text-shadow: 0 0 10px rgba(255,255,255,0.5);
+        }
+
+        .header-social-links {
+            display: flex;
+            align-items: center;
+            height: 100%;
+        
+    margin-right: 40px;
+}
+
+        .header-social-links img {
+            width: 30px;
+            height: 30px;
+            filter: brightness(0) invert(1);
+            margin-left: 15px;
+        }
+
+        #hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8));
+            padding-top: 180px;
+            min-height: 90vh;
+        }
+
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .cta-button {
+            font-family: 'Orbitron', sans-serif;
+            background-color: transparent;
+            color: var(--primary-color);
+            padding: 18px 40px;
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 5px;
+            font-size: 1.25em;
+            transition: all 0.3s ease;
+            display: inline-block;
+            border: 2px solid var(--primary-color);
+            min-width: 200px;
+            text-align: center;
+        }
+        .cta-button:hover {
+            background-color: var(--primary-color);
+            color: #000000;
+            transform: translateY(-3px);
+        }
+
+        h2 { 
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5em;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            text-shadow: 0 0 10px rgba(255,255,255,0.3);
+        }
+        
+        p, ul li, ol li { 
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 400;
+            font-size: 1.3em; 
+            line-height: 1.9; 
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            color: var(--text-color);
+            margin-bottom: 1.2em; 
+        }
+
+        .feature-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-bottom: 30px;
+        }
+.feature-card h3 { min-height: 56px; margin-bottom: 16px; }
+.feature-card p { text-align: left; max-width: 280px; margin: 0 auto; padding-top: 8px; }
+.feature-card p { text-align: left; max-width: 280px; margin: 0 auto; }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+        }
+
+        .feature-card h3 {
+            color: var(--primary-color);
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* Force 3 columns */
+            gap: 30px;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .roadmap-timeline {
+            width: 100%;
+            max-width: 900px;
+        }
+
+        
+.roadmap-phase {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 30px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    text-align: left;
+    border-left: 5px solid var(--primary-color);
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+    max-width: 900px;
+}
+
+
+        .roadmap-phase h3 {
+            color: var(--primary-color);
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .roadmap-phase ul {
+            margin: 0;
+            padding-left: 20px;
+            flex-grow: 1;
+        }
+
+        .roadmap-phase ul li {
+            margin-bottom: 15px;
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        .line856 {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 50px 20px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        footer {
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 40px 20px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+    </style>
 </head>
 <body>
-  <div class="matrix">
-    <canvas id="matrixCanvas"></canvas>
-  </div>
-  <div class="content">
-    <h1>GENESIS21</h1>
-    <p>We didn’t launch this. We found it. Hidden in plain sight — like it was meant to be discovered.</p>
-    <p><strong>The people's Bitcoin — this time, on Ethereum.</strong></p>
-    <p><em>"The ledger never sleeps — only waits."</em></p>
-    <p><em>"You trusted the timestamps, but never questioned the clock."</em></p>
-    <p><em>"The silence wasn’t absence — it was compression."</em></p>
-    <p><em>"Satoshi left the door open."</em></p>
-    <ul>
-      <li>🔐 Renounced ownership</li>
-      <li>🔒 Liquidity locked</li>
-      <li>🧬 21 million fixed supply</li>
-      <li>🚫 Zero tax, fair launch</li>
-      <li>🫥 No team. No roadmap. No shillers.</li>
-      <li>📜 A contract written like a warning…</li>
-    </ul>
-    <p>This isn’t just another token — it’s a relic. A digital artifact. A second chance. The Bitcoin of ETH, born in silence, carried by belief.</p>
-    <div class="cta">
-      <a href="https://etherscan.io/address/0xbEf7e5cafeF65DBE229757AE00c66EB259A2BB2E#code#F9" target="_blank">📜 Read the Contract</a>
-      <a href="https://app.uniswap.org/#/swap?outputCurrency=0xbEf7e5cafeF65DBE229757AE00c66EB259A2BB2E" target="_blank">🛒 Buy on Uniswap</a>
-      <a href="https://t.me/Genesis21eth" target="_blank">💬 Join the Telegram</a>
-      <a href="https://x.com/Genesis21ETH" target="_blank">🐦 Follow on X</a>
-      <a href="https://www.dextools.io/app/en/ether/pair-explorer/0x0c464a072992119f2fc7395005d2e304075352ba" target="_blank">📈 View on DEXTools</a>
-      <p><strong>Contract Address:</strong> 
-  <a href="https://etherscan.io/address/0xbEf7e5cafeF65DBE229757AE00c66EB259A2BB2E" 
-     target="_blank" 
-     style="color: #00ff99; word-break: break-all; text-decoration: none;">
-    0xbEf7e5cafeF65DBE229757AE00c66EB259A2BB2E
-  </a>
-</p>
-    <p><strong>Telegram:</strong> 
-  <a href="https://t.me/Genesis21eth" 
-     target="_blank" 
-     style="color: #ffffff; word-break: break-all; text-decoration: none;">
-    https://t.me/Genesis21eth
-  </a>
-</p>
+<canvas id="matrix-rain"></canvas>
+<header>
+<div class="header-title-nav">
+<div class="logo-container">
+<img alt="Genesis21 Logo" class="logo" src="https://www.dextools.io/resources/tokens/logos/ether/0xbef7e5cafef65dbe229757ae00c66eb259a2bb2e.jpg?1743450053253"/>
+</div>
+<div class="header-title">
+<h1>G E N E S I S 2 1</h1>
+<nav>
+<a href="#hero">Home</a>
+<a href="#about">About</a>
+<a href="#features">Features</a>
+<a href="#tokenomics">Tokenomics</a>
+<a href="#roadmap">Roadmap</a>
+<a href="#how-to-buy">Buy G21</a>
+<a href="#community">Community</a>
+<a href="#faq">FAQ</a>
+</nav>
+</div>
+</div>
+<div class="header-social-links" style="flex-direction: column; align-items: flex-start;">
+<div style="display: flex; gap: 15px; align-items: center;">
+<a href="https://t.me/Genesis21eth" target="_blank"><img alt="Telegram" src="https://img.icons8.com/ios-filled/30/000000/telegram-app.png"/></a>
+<a href="https://x.com/Genesis21ETH" target="_blank"><img alt="Twitter/X" src="https://img.icons8.com/ios-filled/30/000000/twitterx.png"/></a>
+<a href="https://discord.gg/N9Qk39zR" target="_blank"><img alt="Discord" src="https://img.icons8.com/ios-filled/30/000000/discord-logo.png"/></a>
+<a href="https://www.sandbox.game/" target="_blank">
+<img alt="The Sandbox" src="https://www.sandbox.game/img/01_Top_Bar/TSB-Logo-White.svg" style="height: 100px; transform: scale(2); transform-origin: left center;"/>
+</a>
+</div>
+<div style="color: #ccc; font-size: 0.9em; margin-top: 2px;">Discord / Sandbox coming soon</div>
+</div>
+</header>
+<div class="section-container" id="hero">
+<h1>WELCOME TO GENESIS21</h1>
+<p>Genesis21 has quietly emerged from the shadows — a token silently deployed, its code laced with hidden Easter eggs waiting to be discovered. Those with sharp eyes have uncovered its secrets, revealing echoes of Satoshi’s original vision. With its contract locked and ownership renounced, Genesis21 is now fully decentralized and untouchable.</p>
+<p>This is not just another token. <strong>This is the Bitcoin of Ethereum</strong> — a bold contender to Bitcoin, born on Ethereum</p>
+<p>Genesis21 is more than a symbol — it's a movement. We’re building a foundation for decentralized finance, future exchange integrations, and blockchain-powered gaming. Developers are encouraged to join the mission and create utilities, tools, and platforms that expand the Genesis21 ecosystem.</p>
+<p>If you’ve found this, you’re early. You’re part of the beginning. Join us as we shape the next era of crypto: quiet, resilient, and ready.</p>
+<div class="button-container">
+<a class="cta-button" href="https://app.uniswap.org/swap?outputCurrency=0xbEf7e5cafeF65DBE229757AE00c66EB259A2BB2E" target="_blank">Buy on Uniswap</a>
+<a class="cta-button" href="https://etherscan.io/token/0xbef7e5cafef65dbe229757ae00c66eb259a2bb2e#code" target="_blank">Read the Contract</a>
+<a class="cta-button" href="https://www.dextools.io/app/en/ether/pair-explorer/0x0c464a072992119f2fc7395005d2e304075352ba" target="_blank">Trade on DEXTools</a>
+</div>
+</div>
+<div class="section-container" id="about">
+<h2>About Genesis21 (G21)</h2>
+<p>Genesis21 (G21) was deployed in complete secrecy by an anonymous developer and left untouched on the Ethereum blockchain, much like Bitcoin in its early days. With no fanfare, no roadmap, and ownership renounced, G21 was designed to grow organically without interference. It was found by accident – a hidden gem for those who missed out on Bitcoin’s early days.</p>
+<p>This isn’t just another token – it’s the next Bitcoin. Decentralized and untethered, G21 is built to last, a silent revolution in the making. Just like Bitcoin, it’s not about the creator; it’s about the technology and the community. For those who didn’t catch Bitcoin’s wave, Genesis21 is the next phase. The journey has only just begun.</p>
+</div>
+<div class="section-container" id="features">
+<h2>Core Features</h2>
+<div class="features-grid">
+<div class="feature-card">
+<h3>🔥 Early Adopter Edge</h3>
+<p>G21 was discovered, not launched. With no dev wallet and fixed supply, early holders are writing its origin story. This is your window to get in before the world catches on.</p>
+</div>
+<div class="feature-card">
+<h3>🎮 Built into Games</h3>
+<p>Game developers are invited to build with G21—integrating it into loot systems, upgrades, or economies. We’re not leading development, but we’re open to collaborating with creators.</p>
+</div>
+<div class="feature-card">
+<h3>🤖 AI x G21 Utility</h3>
+<p><br/>Use G21 to unlock decentralized AI tools, bots, or wrappers. Whether for queries, access tiers, or API calls—developers can fuel their AI projects with G21.</p>
+</div>
+<div class="feature-card">
+<h3>💰 Staking by Design, Not Mandate</h3>
+<p>G21 invites developers to design their own staking models and reward mechanics. Whether it’s loyalty, lockups, or yield protocols—this is your canvas. G21 is the fuel, you write the code.</p>
+</div>
+<div class="feature-card">
+<h3>🌐 DeFi Compatible</h3>
+<p><br/>G21 can be used across DeFi—liquidity pools, farming, collateral, and more. Devs are welcome to integrate G21 however they see fit.</p>
+</div>
+<div class="feature-card">
+<h3>🧬 Hidden Lore</h3>
+<p><br/><br/>Signatures, clues, and code anomalies hint at deeper layers. From NFTs to secrets, G21 is evolving. To discover the truth, you must hold.</p>
+</div>
+</div>
+</div>
+<div class="section-container" id="tokenomics">
+<h2>Tokenomics</h2>
+<div class="feature-card" style="width: 100%; max-width: 1100px;">
+<p style="max-width: 100%; text-align: left;"><strong>🪙 Fixed Supply: 21,000,000 G21</strong><br/>
+        G21 mirrors the iconic Bitcoin model with a hard-capped supply of 21 million tokens—no inflation, no minting, no surprises. This deliberate scarcity is designed to reinforce long-term value and align with a deflationary economic model.</p>
+<hr style="border: 0; border-top: 1px solid #333; margin: 20px 0;"/>
+<p style="max-width: 100%; text-align: left;"><strong>🔐 Ownership Renounced</strong><br/>
+        The G21 smart contract has had its ownership permanently renounced, guaranteeing decentralization, immutability, and trustlessness. No wallet holds privileged permissions—what’s on-chain is final.</p>
+<hr style="border: 0; border-top: 1px solid #333; margin: 20px 0;"/>
+<p style="max-width: 100%; text-align: left;"><strong>💸 0% Buy/Sell Tax</strong><br/>
+        G21 is engineered for freedom of movement—zero transaction taxes on both buys and sells. This ensures maximum liquidity, ease of integration, and zero friction for users and developers alike.</p>
+<hr style="border: 0; border-top: 1px solid #333; margin: 20px 0;"/>
+<p style="max-width: 100%; text-align: left;"><strong>🌊 Liquidity Lock</strong><br/>
+        The initial liquidity has been locked, signaling a strong commitment to stability and fairness. This measure prevents rug-pulls and provides confidence to holders and partners. (Lock details available on-chain.)</p>
+<hr style="border: 0; border-top: 1px solid #333; margin: 20px 0;"/>
+<p style="max-width: 100%; text-align: left;"><strong>👥 Fair Launch – No Presale, No Team Allocation</strong><br/>
+        G21 was deployed stealthily with no presale, no VC backing, and no team wallets—a pure launch where everyone had the same opportunity. Early adopters found it organically, just like Bitcoin.</p>
+<hr style="border: 0; border-top: 1px solid #333; margin: 20px 0;"/>
+<p style="max-width: 100%; text-align: left;"><strong>🔄 Planned Utility Expansion</strong><br/>
+        G21 is more than a meme—it’s a programmable asset with upcoming integration across:</p>
+<ul style="text-align: left; padding-left: 20px;">
+<li>AI microtransactions</li>
+<li>Staking pools</li>
+<li>DeFi platforms (collateral, yield farming, LPs)</li>
+<li>Gaming ecosystems and marketplaces</li>
+</ul>
+</div>
+</div>
+<div class="section-container" id="roadmap">
+<h2>Roadmap</h2>
+<div class="roadmap-phase" style="width: 100%; max-width: 1100px;">
+<h3>Phase 1: Foundation &amp; Awareness</h3>
+<ul>
+<li>Official Website Launch &amp; Community Channels Activated</li>
+<li>G21 Token Discovered — Deployed and Renounced Without Promotion or Ownership</li>
+<li>Organic Growth Goal: Reach $50K Market Cap</li>
+<li>Awareness Campaigns across X, Telegram, DEXTools, and strategic forums</li>
+<li>Expansion of G21 Social Channels: Telegram, X, Discord, and Sandbox visibility</li>
+<li>Liquidity Stabilization Strategy:</li>
+<ul>
+<li>Exploring mechanisms to grow and lock community liquidity</li>
+<li>Educating holders on how to add LP and earn from trading fees</li>
+<li>Voluntary LP contributions encouraged to strengthen price floor and reduce volatility</li>
+</ul>
+<li>Laying the groundwork for partnerships, tool development, and staking mechanics</li>
+<li>📢 G21 wasn’t launched—it was discovered. This phase is about amplifying that discovery and building a movement around it.</li>
+</ul>
+</div>
+<div class="roadmap-phase" style="width: 100%; max-width: 1100px;">
+<h3>Phase 2: Growth &amp; Integration</h3>
+<ul>
+<li>Strategic Developer Outreach Program:</li>
+<ul>
+<li>Attract builders to integrate G21 into tools, games, and on-chain utilities</li>
+<li>Exploration of use cases in microtransactions, AI tools, and access control</li>
+<li>Development of G21 Staking Platform (secure, rewarding, and decentralized) — available for devs to build</li>
+</ul>
+<li>Launch of the First G21 NFT Collection:</li>
+<ul>
+<li>Mystery-themed NFTs inspired by hidden clues in the original contract</li>
+<li>Exclusive to holders, with event access or utility-based perks</li>
+</ul>
+<li>G21 Metaverse Presence:</li>
+<ul>
+<li>Development begins on our virtual land in The Sandbox</li>
+<li>Creation of an interactive hub featuring lore, puzzles, P2E concepts, and community showcases</li>
+</ul>
+<li>Community-driven initiatives and contributor recognition</li>
+</ul>
+</div>
+<div class="roadmap-phase" style="width: 100%; max-width: 1100px;">
+<h3>Phase 3: Expansion &amp; Utility</h3>
+<ul>
+<li>G21 Community Rewards System:</li>
+<ul>
+<li>Incentivize participation, LP support, and project contributions</li>
+</ul>
+<li>Ecosystem Expansion:</li>
+<ul>
+<li>dApp partnerships</li>
+<li>Early-stage integrations with DeFi protocols</li>
+</ul>
+<li>Developer Opportunities:</li>
+<ul>
+<li>P2E Game Prototyping — open for community developers to take on</li>
+<li>AI Tool Integration:</li>
+<ul>
+<li>Token-gated access to ChatGPT wrappers, AI-powered dashboards, and experimental tools</li>
+<li>Dev bounties for integrating G21 into AI workflows and platforms</li>
+</ul>
+</ul>
+<li>Global Awareness Campaign &amp; Influencer Engagement</li>
+<li>Preparation for Exchange Listings</li>
+<li>Metrics to be met: Active utility, growing holder base, and community engagement</li>
+</ul>
+</div>
+<div class="roadmap-phase" style="width: 100%; max-width: 1100px;">
+<h3>Phase 4: Maturity &amp; Lift-Off</h3>
+<ul>
+<li>G21 Exchange Listings (based on ecosystem maturity and eligibility)</li>
+<li>Full-featured staking and DeFi integrations</li>
+<li>Expansion of metaverse experience into a fully playable narrative</li>
+<li>Long-term partnerships with projects and platforms aligned with G21 values</li>
+<li>DAO-style governance exploration for community-led evolution</li>
+<li>Continued evolution of the G21 narrative—driven by its holders</li>
+</ul>
+</div>
+</div>
+<div class="section-container" id="how-to-buy">
+<h2>How to Buy</h2>
+<div class="features-grid" style="grid-template-columns: repeat(2, 1fr); gap: 40px;">
+<div class="feature-card">
+<h3>🦄 Buy on Uniswap</h3>
+<ol>
+<li>Download and install a wallet like MetaMask.</li>
+<li>Go to Uniswap and open the G21 pair.</li>
+<li>Connect your wallet to Uniswap.</li>
+<li>Paste the G21 contract address:<br/><code>0xbEf7e5cafeF65DBE229757AE00c66EB259A2BB2E</code></li>
+<li>Enter the amount and confirm the transaction.</li>
+</ol>
+<div class="button-container">
+<a class="cta-button" href="https://app.uniswap.org/swap?outputCurrency=0xbEf7e5cafeF65DBE229757AE00c66EB259A2BB2E" target="_blank">Trade on Uniswap</a>
+</div>
+</div>
+<div class="feature-card">
+<h3>📊 Buy on DEXTools</h3>
+<ol>
+<li>Visit DEXTools and search for the G21/ETH pair.</li>
+<li>Connect your wallet using the top-right button.</li>
+<li>Click the "Trade" button directly from the pair view.</li>
+<li>You will be redirected to Uniswap for the trade execution.</li>
+<li>Double-check the contract address to avoid scams:<br/><code>0xbEf7e5cafeF65DBE229757AE00c66EB259A2BB2E</code></li>
+</ol>
+<div class="button-container">
+<a class="cta-button" href="https://www.dextools.io/app/en/ether/pair-explorer/0x0c464a072992119f2fc7395005d2e304075352ba" target="_blank">View on DEXTools</a>
+</div>
+</div>
+</div>
+</div>
+<div class="section-container" id="community">
+<h2>Join Our Community</h2>
+<p>Connect with fellow enthusiasts and stay updated on the latest developments.</p>
+<div class="button-container">
+<a class="cta-button" href="https://t.me/Genesis21eth" target="_blank">Telegram</a>
+<a class="cta-button" href="https://x.com/Genesis21ETH" target="_blank">Twitter</a>
+<a class="cta-button" href="https://discord.gg/N9Qk39zR" target="_blank">Discord</a>
+</div>
+</div>
+<div class="section-container" id="faq">
+<h2>FAQ</h2>
+<div class="feature-card" style="width: 100%; max-width: 1200px;">
+<p style="max-width: 100%; text-align: left;"><span style="font-size: 1.6em; font-weight: bold;">What is G21?</span><br/>
+        G21 is a mysteriously deployed token on the Ethereum network that was discovered—not launched. The contract was renounced, no ownership remained, and no announcement was ever made. It sat dormant, untouched, until a curious explorer uncovered hidden clues buried deep in the code.<br/><br/>
+        Now, it's being called "the Bitcoin of Ethereum"—because its origin story and structure truly mirror Bitcoin’s.</p>
+<br/><br/>
+<p style="max-width: 100%; text-align: left;"><span style="font-size: 1.6em; font-weight: bold;">How was it found?</span><br/>
+        The token was discovered by someone manually reviewing deployed contracts on Ethereum. They noticed something strange—messages hidden in the contract, intentional anomalies, and a lack of any promotional activity. It felt deliberate. And it was.<br/><br/>
+        To see it yourself, read the contract directly:<br/>
+<a href="https://etherscan.io/token/0xbef7e5cafef65dbe229757ae00c66eb259a2bb2e#code" style="color: #ffffff; font-weight: bold;" target="_blank">Etherscan Contract Link</a><br/>
+        Pay special attention to line 856 onwards — that's where the rabbit hole begins.</p>
+<br/><br/>
+<p style="max-width: 100%; text-align: left;"><span style="font-size: 1.6em; font-weight: bold;">What did the contract say exactly?</span><br/>
+        Without spoiling the mystery, the contract contains embedded clues, cryptic phrases, and signatures that suggest this was always meant to be found—but only by those looking deeply. It’s not a standard ERC-20.<br/><br/>
+        This isn’t just code. It’s a message to the crypto world.</p>
+<br/><br/>
+<p style="max-width: 100%; text-align: left;"><span style="font-size: 1.6em; font-weight: bold;">Is this really the Bitcoin of Ethereum?</span><br/>
+        Yes—and not just in name. G21:<br/><br/>
+        Has a fixed supply of 21 million, just like BTC.<br/>
+        Was deployed without liquidity, promotion, or ownership—just like Bitcoin.<br/>
+        Has been slowly adopted, with early supporters locking liquidity and growing the community organically.<br/>
+        Has no team tokens, no pre-sale, and no dev wallet.<br/><br/>
+        It’s not trying to be another trend. It is the trend.</p>
+<br/><br/>
+<p style="max-width: 100%; text-align: left;"><span style="font-size: 1.6em; font-weight: bold;">Where does the liquidity come from?</span><br/>
+        G21 was deployed with zero liquidity—a blank slate. Since its discovery, the community that found it has been gradually adding liquidity, mirroring how Bitcoin grew through belief and participation.<br/><br/>
+        You can support the project by adding G21 liquidity yourself via Uniswap.<br/>
+        Not only does this help stabilize the price, but you’ll also earn trading fees like a DeFi LP.<br/><br/>
+        This is how decentralized ecosystems are meant to grow.</p>
+<br/><br/>
+<p style="max-width: 100%; text-align: left;"><span style="font-size: 1.6em; font-weight: bold;">What utility does G21 have?</span><br/>
+        While G21 started as a discovery, it’s evolving into a fully integrated ecosystem. Current and upcoming features include:<br/><br/>
+        - AI tool integrations powered by G21 as access tokens<br/>
+        - NFT drops connected to the token’s mysterious origins<br/>
+        - P2E gaming and metaverse deployment on our Sandbox land<br/>
+        - Staking platform (in development) for long-term holders<br/>
+        - DeFi use cases such as farming, lending, and DEX integration<br/><br/>
+        This is just the beginning.</p>
+<br/><br/>
+<p style="max-width: 100%; text-align: left;"><span style="font-size: 1.6em; font-weight: bold;">Why should I buy G21 now?</span><br/>
+        Because you weren’t there for Bitcoin.<br/>
+        You missed ETH at $10.<br/>
+        You skipped the airdrops, the stealth launches, the early entry points.<br/><br/>
+        This is one of those moments.<br/><br/>
+        You’re here early—before listings, before media hype, before full utility.<br/>
+        There are no VCs. No insiders. No roadmaps written in a boardroom.<br/>
+        Just code, clues, and the people who found it.<br/><br/>
+        G21 is the people's Bitcoin.<br/>
+        And it’s time for the people to build.</p>
+</div>
+</div>
+<footer>
+<p>© 2025 Genesis21 (G21). All rights reserved.</p>
+<p>Contract: 0xbef7e5cafef65dbe229757ae00c66eb259a2bb2e</p>
+</footer>
+<script>
+        // Matrix Rain Effect
+        const canvas = document.getElementById('matrix-rain');
+        const ctx = canvas.getContext('2d');
 
-<p><strong>X (Twitter):</strong> 
-  <a href="https://x.com/Genesis21ETH" 
-     target="_blank" 
-     style="color: #ffffff; word-break: break-all; text-decoration: none;">
-    https://x.com/Genesis21ETH
-  </a>
-</p>  
-    </div>
-    <div class="footer">
-      Line 856. That’s where the truth begins. This is the people’s Bitcoin — on ETH. Genesis21. © 2025
-    </div>
-  </div>
-  <script>
-    const canvas = document.getElementById('matrixCanvas');
-    const ctx = canvas.getContext('2d');
-    canvas.height = window.innerHeight;
-    canvas.width = window.innerWidth;
-    let letters = '01'.split('');
-    let fontSize = 14;
-    let columns = canvas.width / fontSize;
-    let drops = Array.from({length: columns}, () => 1);
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
 
-    function drawMatrix() {
-      ctx.fillStyle = 'rgba(10, 10, 10, 0.05)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = '#555';
-      ctx.font = fontSize + 'px monospace';
-      for (let i = 0; i < drops.length; i++) {
-        let text = letters[Math.floor(Math.random() * letters.length)];
-        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-          drops[i] = 0;
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%'.split('');
+        const fontSize = 14;
+        const columns = canvas.width/fontSize;
+
+        const drops = [];
+        for(let x = 0; x < columns; x++) {
+            drops[x] = 1;
         }
-        drops[i]++;
-      }
-    }
-    setInterval(drawMatrix, 33);
-  </script>
+
+        function draw() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.fillStyle = '#0F0';
+            ctx.font = fontSize + 'px monospace';
+
+            for(let i = 0; i < drops.length; i++) {
+                const text = characters[Math.floor(Math.random() * characters.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                
+                if(drops[i] * fontSize > canvas.height && Math.random() > 0.975)
+                    drops[i] = 0;
+                
+                drops[i]++;
+            }
+        }
+
+        setInterval(draw, 35);
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
 </body>
 </html>
